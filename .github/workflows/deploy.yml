@@ -42,13 +42,25 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          import importlib.util
+          import sys
+
           root = Path(__file__).resolve().parent.parent
+          sys.path.insert(0, str(root))
+
           if (root / "app.py").exists():
               import app
               print("app import OK")
           else:
               print("app.py not present, skip import")
-          import mybot.config
-          print("mybot.config import OK")
+
+          cfg_path = root / "mybot" / "config.py"
+          if cfg_path.exists():
+              spec = importlib.util.spec_from_file_location("mybot_config", cfg_path)
+              mod = importlib.util.module_from_spec(spec)
+              spec.loader.exec_module(mod)
+              print("mybot/config.py import OK")
+          else:
+              print("mybot/config.py not found, skip")
           PY
 
