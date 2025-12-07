@@ -43,11 +43,11 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           root = Path(__file__).resolve().parent.parent
-          if (root / "flask_app.py").exists():
-              import flask_app
-              print("flask_app import OK")
+          if (root / "app.py").exists():
+              import app
+              print("app import OK")
           else:
-              print("flask_app.py not present, skip import")
+              print("app.py not present, skip import")
           import mybot.config
           print("mybot.config import OK")
           PY
