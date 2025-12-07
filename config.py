@@ -10,7 +10,7 @@ if not TOKEN:
 
 # ID админа (для команд /reset, /cancel чужих игр)
 # Можно узнать у @userinfobot; хранить в переменной окружения
-ADMIN_ID = int(os.getenv('ADMIN_ID', '1098061153'))
+ADMIN_ID = int(os.getenv('ADMIN_ID', ''))
 
 SKIP_PENDING = False  # Пропускать ли старые сообщения при запуске бота
 DELETE_FROM_EVERYONE = False  # Удалять ли сообщения у всех (нужны права админа) или только у бота
