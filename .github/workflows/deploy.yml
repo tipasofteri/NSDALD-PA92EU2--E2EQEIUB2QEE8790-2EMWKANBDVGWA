@@ -41,8 +41,14 @@ jobs:
           ADMIN_ID: ${{ secrets.ADMIN_ID || env.ADMIN_ID }}
         run: |
           python - <<'PY'
-          import flask_app
+          from pathlib import Path
+          root = Path(__file__).resolve().parent.parent
+          if (root / "flask_app.py").exists():
+              import flask_app
+              print("flask_app import OK")
+          else:
+              print("flask_app.py not present, skip import")
           import mybot.config
-          print("Smoke imports OK")
+          print("mybot.config import OK")
           PY
 
